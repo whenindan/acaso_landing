@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { signup } from "@/content/site";
 import { validateSignup, type SignupErrors, type SignupInput } from "@/lib/signup";
-import { Container, Eyebrow, Heading } from "./Section";
+import { Container, Eyebrow } from "./Section";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -49,62 +49,77 @@ export function SignupForm() {
   }
 
   return (
-    <section id="signup" aria-labelledby="signup-heading" className="border-t border-ink-10 py-24 md:py-32">
-      <Container className="grid grid-cols-1 gap-12 md:grid-cols-12">
-        <div className="md:col-span-5">
+    <section
+      id="signup"
+      aria-labelledby="signup-heading"
+      className="border-t border-fg/10 px-[clamp(20px,4vw,56px)] py-[clamp(96px,12vw,160px)]"
+    >
+      <Container className="grid gap-x-24 gap-y-16 [grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))]">
+        <div className="flex flex-col gap-6">
           <Eyebrow>{signup.eyebrow}</Eyebrow>
-          <Heading id="signup-heading">{signup.heading}</Heading>
-          <p className="mt-6 max-w-md text-lg text-ink-80">{signup.sub}</p>
+          <h2
+            id="signup-heading"
+            className="m-0 text-balance font-reader text-[clamp(38px,4.4vw,64px)] leading-[1.02] font-light tracking-[-0.02em]"
+          >
+            {signup.heading}
+          </h2>
+          <p className="m-0 max-w-[380px] text-base leading-[1.6] text-muted">{signup.sub}</p>
         </div>
 
-        <div className="md:col-span-7">
-          {status === "success" ? (
-            <div
-              role="status"
-              className="flex min-h-80 flex-col justify-center rounded-2xl bg-ink p-8 text-paper sm:p-12"
-            >
-              <p className="label-mono flex items-center gap-2 text-paper/70">
-                <span className="size-2 rounded-full bg-signal" aria-hidden="true" />
-                Received
-              </p>
-              <p className="mt-6 text-3xl font-semibold tracking-[-0.03em]">
-                {signup.success.heading}
-              </p>
-              <p className="mt-3 text-paper/70">{signup.success.body}</p>
-            </div>
-          ) : (
-            <form
-              noValidate
-              onSubmit={onSubmit}
-              className="grid grid-cols-1 gap-5 rounded-2xl border border-ink-10 p-6 sm:grid-cols-2 sm:p-10"
-            >
-              <Field id="name" label={signup.fields.name} required autoComplete="name"
-                value={values.name} error={errors.name} onChange={update} />
-              <Field id="company" label={signup.fields.company} required autoComplete="organization"
-                value={values.company} error={errors.company} onChange={update} />
-              <Field id="email" type="email" label={signup.fields.email} required autoComplete="email"
-                value={values.email} error={errors.email} onChange={update} />
-              <Field id="phone" type="tel" label={signup.fields.phone} autoComplete="tel"
-                value={values.phone} error={errors.phone} onChange={update} />
-              <Field id="notes" label={signup.fields.notes} multiline className="sm:col-span-2"
+        {status === "success" ? (
+          <div
+            role="status"
+            className="flex min-h-80 flex-col justify-center gap-4 border-t border-fg/18"
+          >
+            <span className="label-mono flex items-center gap-2.5 text-faint">
+              <span className="size-1.5 rounded-full bg-signal" aria-hidden="true" />
+              Received
+            </span>
+            <p className="m-0 font-reader text-4xl font-light tracking-[-0.02em]">
+              {signup.success.heading}
+            </p>
+            <p className="m-0 text-muted">{signup.success.body}</p>
+          </div>
+        ) : (
+          <form
+            noValidate
+            onSubmit={onSubmit}
+            className="grid content-start gap-x-8 gap-y-9 [grid-template-columns:repeat(auto-fit,minmax(220px,1fr))]"
+          >
+            <Field id="name" label={signup.fields.name} required autoComplete="name" value={values.name} error={errors.name} onChange={update} />
+            <Field id="company" label={signup.fields.company} required autoComplete="organization" value={values.company} error={errors.company} onChange={update} />
+            <Field id="email" type="email" label={signup.fields.email} required autoComplete="email" value={values.email} error={errors.email} onChange={update} />
+            <Field id="phone" type="tel" label={signup.fields.phone} autoComplete="tel" value={values.phone} error={errors.phone} onChange={update} />
+
+            <label className="col-span-full flex flex-col gap-1.5">
+              <span className="label-mono text-faint">
+                {signup.fields.notes} <span className="text-quiet">(optional)</span>
+              </span>
+              <textarea
+                id="signup-notes"
+                name="notes"
+                rows={3}
+                value={values.notes}
                 placeholder={signup.notesPlaceholder}
-                value={values.notes} error={errors.notes} onChange={update} />
+                onChange={(e) => update("notes", e.target.value)}
+                className="resize-y rounded-none border-0 border-b border-fg/[0.22] bg-transparent py-2.5 text-[17px] outline-none focus:border-fg"
+              />
+            </label>
 
-              <div className="flex flex-wrap items-center gap-4 sm:col-span-2">
-                <button
-                  type="submit"
-                  disabled={status === "submitting"}
-                  className="rounded-full bg-ink px-6 py-3.5 font-semibold text-paper transition-opacity hover:opacity-85 disabled:cursor-wait disabled:opacity-60"
-                >
-                  {status === "submitting" ? signup.submitting : signup.submit}
-                </button>
-                <p aria-live="polite" className="text-sm text-ink-80">
-                  {status === "error" ? signup.error : ""}
-                </p>
-              </div>
-            </form>
-          )}
-        </div>
+            <div className="col-span-full flex flex-wrap items-center gap-5">
+              <button
+                type="submit"
+                disabled={status === "submitting"}
+                className="flex items-center gap-3.5 bg-fg px-[26px] py-4 text-[15px] font-medium text-bg transition-colors hover:bg-white disabled:cursor-wait disabled:opacity-60"
+              >
+                {status === "submitting" ? signup.submitting : signup.submit} <span aria-hidden="true">→</span>
+              </button>
+              <p aria-live="polite" className="text-sm text-error">
+                {status === "error" ? signup.error : ""}
+              </p>
+            </div>
+          </form>
+        )}
       </Container>
     </section>
   );
@@ -118,10 +133,7 @@ function Field({
   onChange,
   type = "text",
   required = false,
-  multiline = false,
   autoComplete,
-  placeholder,
-  className = "",
 }: {
   id: keyof SignupInput;
   label: string;
@@ -130,42 +142,34 @@ function Field({
   onChange: (field: keyof SignupInput, value: string) => void;
   type?: string;
   required?: boolean;
-  multiline?: boolean;
   autoComplete?: string;
-  placeholder?: string;
-  className?: string;
 }) {
   const inputId = `signup-${id}`;
   const errorId = `${inputId}-error`;
-  const shared = {
-    id: inputId,
-    name: id,
-    value,
-    required,
-    placeholder,
-    "aria-invalid": error ? true : undefined,
-    "aria-describedby": error ? errorId : undefined,
-    className: `mt-2 w-full rounded-lg border bg-paper px-4 py-3 text-base outline-none transition-colors placeholder:text-ink-60 focus:border-ink focus-visible:outline-2 focus-visible:outline-offset-2 ${
-      error ? "border-ink" : "border-ink/20"
-    }`,
-  };
 
   return (
-    <div className={className}>
-      <label htmlFor={inputId} className="label-mono text-ink-80">
+    <label htmlFor={inputId} className="flex flex-col gap-1.5">
+      <span className="label-mono text-faint">
         {label}
-        {required ? <span aria-hidden="true"> *</span> : <span className="text-ink-60"> (optional)</span>}
-      </label>
-      {multiline ? (
-        <textarea {...shared} rows={4} onChange={(e) => onChange(id, e.target.value)} />
-      ) : (
-        <input {...shared} type={type} autoComplete={autoComplete} onChange={(e) => onChange(id, e.target.value)} />
-      )}
-      {error ? (
-        <p id={errorId} className="mt-2 text-sm font-semibold">
-          {error}
-        </p>
-      ) : null}
-    </div>
+        {required ? <span aria-hidden="true"> *</span> : <span className="text-quiet"> (optional)</span>}
+      </span>
+      <input
+        id={inputId}
+        name={id}
+        type={type}
+        value={value}
+        required={required}
+        autoComplete={autoComplete}
+        aria-invalid={error ? true : undefined}
+        aria-describedby={error ? errorId : undefined}
+        onChange={(e) => onChange(id, e.target.value)}
+        className={`border-0 border-b bg-transparent py-2.5 text-[17px] outline-none focus:border-fg ${
+          error ? "border-error" : "border-fg/[0.22]"
+        }`}
+      />
+      <span id={errorId} className="min-h-[18px] text-[13px] text-error">
+        {error}
+      </span>
+    </label>
   );
 }

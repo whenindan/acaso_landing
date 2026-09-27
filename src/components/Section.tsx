@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 
+// Sections apply their own clamp()-based padding (it varies per section), so
+// Container only centers content within the page's 1280px measure.
 export function Container({
   children,
   className = "",
@@ -7,32 +9,9 @@ export function Container({
   children: ReactNode;
   className?: string;
 }) {
-  return (
-    <div className={`mx-auto w-full max-w-[1200px] px-5 sm:px-8 ${className}`}>
-      {children}
-    </div>
-  );
+  return <div className={`mx-auto w-full max-w-[1280px] ${className}`}>{children}</div>;
 }
 
 export function Eyebrow({ children }: { children: ReactNode }) {
-  return <p className="label-mono text-ink-60">{children}</p>;
-}
-
-export function Heading({
-  id,
-  children,
-  className = "",
-}: {
-  id?: string;
-  children: ReactNode;
-  className?: string;
-}) {
-  return (
-    <h2
-      id={id}
-      className={`mt-4 text-3xl font-semibold leading-[1.05] tracking-[-0.03em] text-balance sm:text-5xl ${className}`}
-    >
-      {children}
-    </h2>
-  );
+  return <span className="label-mono text-faint">{children}</span>;
 }

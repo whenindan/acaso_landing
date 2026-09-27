@@ -1,16 +1,17 @@
 import Image from "next/image";
 
-// ACASO lockup (mark stacked above wordmark), from the acaso-6d-kit
-// (public/brand/png/acaso-lockup-stacked-black.png).
-export function Logo({ className = "h-8" }: { className?: string }) {
+// ACASO lockup (mark beside wordmark), from the acaso-6d-kit
+// (public/brand/png/acaso-lockup-white.png). The whole site is dark, so the
+// light lockup is the only variant this landing page needs.
+export function Logo({ className = "h-4" }: { className?: string }) {
   return (
     <Image
-      src="/brand/png/acaso-lockup-stacked-black.png"
+      src="/brand/png/acaso-lockup-white.png"
       alt="ACASO"
-      width={1227}
-      height={577}
+      width={2637}
+      height={279}
       priority
-      className={`w-auto ${className}`}
+      className={`invert-on-light w-auto ${className}`}
     />
   );
 }
