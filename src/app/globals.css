@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #141414;
+  --color-paper: #f1f1ee;
+  --color-ink-80: rgb(20 20 20 / 0.8);
+  --color-ink-60: rgb(20 20 20 / 0.66);
+  --color-ink-40: rgb(20 20 20 / 0.4);
+  --color-ink-10: rgb(20 20 20 / 0.1);
+  --color-ink-5: rgb(20 20 20 / 0.05);
+  --color-signal: #2f8f5b;
+
+  --font-sans: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+
+  ::selection {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@utility label-mono {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+/* LoopMark: the arc draws itself, the dot drops into the gap and closes the
+   loop, then the mark idles with a slow pulse. Never rotated or recolored. */
+
+.loop-arc {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: loop-draw 1.6s cubic-bezier(0.65, 0, 0.35, 1) 0.2s forwards;
+}
+
+.loop-dot {
+  opacity: 0;
+  transform: translateY(-34px);
+  animation: loop-drop 0.55s cubic-bezier(0.34, 1.4, 0.64, 1) 1.8s forwards;
+}
+
+.loop-mark {
+  transform-origin: 50% 50%;
+  transform-box: fill-box;
+  animation: loop-idle 4.8s ease-in-out 2.6s infinite;
+}
+
+.loop-signal {
+  opacity: 0;
+  animation: loop-signal 1.8s ease-out 2.3s forwards;
+}
+
+@keyframes loop-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes loop-drop {
+  0% {
+    opacity: 0;
+    transform: translateY(-34px);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes loop-idle {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+@keyframes loop-signal {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.live-dot {
+  animation: live-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes live-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loop-arc,
+  .loop-dot,
+  .loop-mark,
+  .loop-signal,
+  .live-dot {
+    animation: none;
+  }
+  .loop-arc {
+    stroke-dashoffset: 0;
+  }
+  .loop-dot {
+    opacity: 1;
+    transform: none;
+  }
+}
