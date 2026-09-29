@@ -15,20 +15,6 @@
   --font-reader: var(--font-newsreader), Georgia, serif;
 }
 
-/* Dark is the default (see @theme above); the ThemeToggle sets this
-   attribute to opt into light. Every color utility built from these tokens
-   (including border-fg/10-style opacity variants, which Tailwind resolves
-   with color-mix() against the variable) repaints automatically. */
-:root[data-theme="light"] {
-  --color-bg: #f1f1ee;
-  --color-fg: #141414;
-  --color-muted: #55554f;
-  --color-faint: #6b6b64;
-  --color-quiet: #8c8c85;
-  --color-error: #b3401f;
-  --color-signal: oklch(0.6 0.14 150);
-}
-
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -76,21 +62,3 @@
   letter-spacing: 0.14em;
 }
 
-/* The lockup and mark brand assets are baked white-on-transparent; flip
-   them for light mode instead of shipping dark-variant duplicates. */
-:root[data-theme="light"] .invert-on-light {
-  filter: invert(1);
-}
-
-/* ThemeToggle's two labels: whichever names the mode you'd switch *to*. */
-.theme-label-light {
-  display: none;
-}
-
-:root[data-theme="light"] .theme-label-dark {
-  display: none;
-}
-
-:root[data-theme="light"] .theme-label-light {
-  display: inline;
-}
