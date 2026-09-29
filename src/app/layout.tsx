@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Serif, Newsreader } from "next/font/google";
-import Script from "next/script";
 import { site } from "@/content/site";
-import { THEME_STORAGE_KEY } from "@/lib/theme";
 import "./globals.css";
 
 const geist = Geist({
@@ -59,23 +57,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      // The theme-init script below sets data-theme on this element before
-      // hydration, which will differ from this server-rendered markup.
       suppressHydrationWarning
       className={`${geist.variable} ${geistMono.variable} ${instrumentSerif.variable} ${newsreader.variable} antialiased`}
     >
-      <body className="min-h-full bg-bg text-fg">
-        {/* Dark is the default; apply a saved light-mode choice before
-            paint so there's no flash of the wrong theme. */}
-        <Script id="theme-init" strategy="beforeInteractive">
-          {`try {
-            if (localStorage.getItem(${JSON.stringify(THEME_STORAGE_KEY)}) === "light") {
-              document.documentElement.setAttribute("data-theme", "light");
-            }
-          } catch (e) {}`}
-        </Script>
-        {children}
-      </body>
+      <body className="min-h-full bg-bg text-fg">{children}</body>
     </html>
   );
 }
