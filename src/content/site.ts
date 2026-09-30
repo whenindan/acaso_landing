@@ -3,51 +3,51 @@
 
 export const site = {
   name: "ACASO",
-  title: "ACASO: The AI-native consulting firm",
+  title: "ACASO: The consulting firm without consultants",
   description:
-    "ACASO finds where your business loses time, then builds and runs the AI agents that fix it, inside the tools you already use.",
+    "AI-native consulting. ACASO finds where your business loses time and puts AI agents on the job.",
   // PLACEHOLDER: replace with the real domain before launch.
   url: "https://acaso.ai",
 };
 
 export const hero = {
-  headline: "Consulting that ships ",
-  headlineEmphasis: "agents, not decks.",
-  sub: "ACASO is an AI-native consulting firm. We find where your business loses time and money, then build and run the agents that fix it. Right inside the tools you already use.",
+  headline: "The consulting firm ",
+  headlineEmphasis: "without consultants.",
+  sub: "ACASO finds where your business loses time, then puts AI agents on the job. Right inside the tools you already use.",
   cta: { href: "#signup", label: "Work with us" },
 };
 
 export const how = {
-  heading: "We don't hand you a report. ",
-  headingEmphasis: "We make the change.",
+  heading: "No slide decks. ",
+  headingEmphasis: "Just agents at work.",
   steps: [
     {
       title: "Diagnose",
-      body: "We sit with your team and map how work really moves through finance, ops, sales and support. Then we find where AI pays back fastest.",
+      body: "We learn how your company runs and find where AI saves the most time.",
     },
     {
       title: "Build",
-      body: "We deploy agents into your inbox, bank, CRM and the rest of your stack. Live in weeks, not a year-long transformation program.",
+      body: "We put agents in your inbox, bank, CRM and the rest of your stack. Live in weeks.",
     },
     {
       title: "Run",
-      body: "We don't leave. Agents close the books, answer customers and chase invoices every day, and get sharper as they learn how your company works.",
+      body: "Agents close the books, answer customers and chase invoices. Every day, getting sharper.",
     },
   ],
 };
 
 export const whatsNext = {
-  eyebrow: "Consulting, rebuilt for AI",
-  heading: "Advice is the easy part. ",
-  headingEmphasis: "We do the work.",
-  body: "Traditional firms bill for slides and leave the implementation to you. We're operators and engineers who stay until the work runs itself, and every company we work with makes our agents better at the job.",
-  cta: { href: "#signup", label: "Tell us where it hurts" },
+  eyebrow: "AI-native consulting",
+  heading: "Finance, ops, sales, support. ",
+  headingEmphasis: "Run on AI.",
+  body: "Every company we work with makes our agents better at the job. Tell us what you'd hand off first.",
+  cta: { href: "#signup", label: "Tell us" },
 };
 
 export const signup = {
   eyebrow: "Work with us",
-  heading: "Run your company on AI.",
-  sub: "Tell us a little about your company. We'll reach out within a day to find where AI can make the biggest difference.",
+  heading: "Put ACASO to work.",
+  sub: "Tell us a little about your company. We'll reach out within a day.",
   fields: {
     name: "Full name",
     company: "Company",
@@ -55,7 +55,7 @@ export const signup = {
     phone: "Phone",
     notes: "Anything we should know?",
   },
-  notesPlaceholder: "Where your team loses the most time, the tools you use, what you've tried…",
+  notesPlaceholder: "What you'd hand off first, the tools you use, what's painful…",
   submit: "Talk to us",
   submitting: "Sending…",
   success: {
