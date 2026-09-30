@@ -3,51 +3,51 @@
 
 export const site = {
   name: "ACASO",
-  title: "ACASO: AI agents that run your back office",
+  title: "ACASO: The AI-native consulting firm",
   description:
-    "ACASO agents run finance, ops, sales and support for your company, inside the tools you already use.",
+    "ACASO finds where your business loses time, then builds and runs the AI agents that fix it, inside the tools you already use.",
   // PLACEHOLDER: replace with the real domain before launch.
   url: "https://acaso.ai",
 };
 
 export const hero = {
-  headline: "Your next hire ",
-  headlineEmphasis: "is an agent.",
-  sub: "ACASO agents run finance, ops, sales and support for your company. Right inside the tools you already use.",
-  cta: { href: "#signup", label: "Get started" },
+  headline: "Consulting that ships ",
+  headlineEmphasis: "agents, not decks.",
+  sub: "ACASO is an AI-native consulting firm. We find where your business loses time and money, then build and run the agents that fix it. Right inside the tools you already use.",
+  cta: { href: "#signup", label: "Work with us" },
 };
 
 export const how = {
-  heading: "Connect once. ",
-  headingEmphasis: "Agents take it from there.",
+  heading: "We don't hand you a report. ",
+  headingEmphasis: "We make the change.",
   steps: [
     {
-      title: "Connect",
-      body: "Give our agents access to your inbox, bank, CRM and the rest of your stack. That's the whole onboarding.",
+      title: "Diagnose",
+      body: "We sit with your team and map how work really moves through finance, ops, sales and support. Then we find where AI pays back fastest.",
     },
     {
-      title: "Agents work",
-      body: "They close the books, answer customers, chase invoices and follow up on leads. Every day, without being asked.",
+      title: "Build",
+      body: "We deploy agents into your inbox, bank, CRM and the rest of your stack. Live in weeks, not a year-long transformation program.",
     },
     {
-      title: "They learn",
-      body: "Your customers, your vendors, your rules. Agents pick up how your company works and get sharper every week.",
+      title: "Run",
+      body: "We don't leave. Agents close the books, answer customers and chase invoices every day, and get sharper as they learn how your company works.",
     },
   ],
 };
 
 export const whatsNext = {
-  eyebrow: "One team of agents",
-  heading: "Finance, ops, sales, support. ",
-  headingEmphasis: "More every month.",
-  body: "Every company we work with makes our agents better at the job. Tell us what you'd hand off first.",
-  cta: { href: "#signup", label: "Tell us" },
+  eyebrow: "Consulting, rebuilt for AI",
+  heading: "Advice is the easy part. ",
+  headingEmphasis: "We do the work.",
+  body: "Traditional firms bill for slides and leave the implementation to you. We're operators and engineers who stay until the work runs itself, and every company we work with makes our agents better at the job.",
+  cta: { href: "#signup", label: "Tell us where it hurts" },
 };
 
 export const signup = {
-  eyebrow: "Get started",
-  heading: "Put ACASO to work.",
-  sub: "Tell us a little about your company. We'll reach out within a day.",
+  eyebrow: "Work with us",
+  heading: "Run your company on AI.",
+  sub: "Tell us a little about your company. We'll reach out within a day to find where AI can make the biggest difference.",
   fields: {
     name: "Full name",
     company: "Company",
@@ -55,11 +55,11 @@ export const signup = {
     phone: "Phone",
     notes: "Anything we should know?",
   },
-  notesPlaceholder: "What you'd hand off first, the tools you use, what's painful…",
-  submit: "Get started",
+  notesPlaceholder: "Where your team loses the most time, the tools you use, what you've tried…",
+  submit: "Talk to us",
   submitting: "Sending…",
   success: {
-    heading: "You're on the list.",
+    heading: "Thanks, we're on it.",
     body: "We'll be in touch within a day.",
   },
   error: "Something went wrong. Please try again.",
