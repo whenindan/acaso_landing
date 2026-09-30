@@ -37,10 +37,10 @@ export const how = {
 };
 
 export const whatsNext = {
-  eyebrow: "One team of agents",
-  heading: "Finance, ops, sales, support. ",
-  headingEmphasis: "More every month.",
-  body: "Every company we work with makes our agents better at the job. Tell us what you'd hand off first.",
+  eyebrow: "Run leaner on AI",
+  heading: "Grow the business. ",
+  headingEmphasis: "Not the headcount.",
+  body: "Consultants leave. Agents stay, doing the work every day. Tell us what you'd hand off first.",
   cta: { href: "#signup", label: "Tell us" },
 };
 
