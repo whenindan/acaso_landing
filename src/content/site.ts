@@ -37,9 +37,9 @@ export const how = {
 };
 
 export const whatsNext = {
-  eyebrow: "AI-native consulting",
+  eyebrow: "One team of agents",
   heading: "Finance, ops, sales, support. ",
-  headingEmphasis: "Run on AI.",
+  headingEmphasis: "More every month.",
   body: "Every company we work with makes our agents better at the job. Tell us what you'd hand off first.",
   cta: { href: "#signup", label: "Tell us" },
 };
