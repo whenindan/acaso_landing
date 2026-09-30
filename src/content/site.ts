@@ -38,9 +38,9 @@ export const how = {
 
 export const whatsNext = {
   eyebrow: "Run leaner on AI",
-  heading: "Grow the business. ",
-  headingEmphasis: "Not the headcount.",
-  body: "Consultants leave. Agents stay, doing the work every day. Tell us what you'd hand off first.",
+  heading: "Consultants leave. ",
+  headingEmphasis: "Agents stay.",
+  body: "Your team runs leaner and moves faster, long after we're gone. Tell us what you'd hand off first.",
   cta: { href: "#signup", label: "Tell us" },
 };
 
