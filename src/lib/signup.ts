@@ -3,7 +3,6 @@ export type SignupInput = {
   name: string;
   company: string;
   email: string;
-  phone: string;
   notes: string;
 };
 
@@ -18,8 +17,6 @@ export function validateSignup(input: Partial<SignupInput>): SignupErrors {
   if (!input.email?.trim()) errors.email = "Please enter your email.";
   else if (!EMAIL_RE.test(input.email.trim()))
     errors.email = "Please enter a valid email.";
-  if (input.phone && !/^[\d\s()+.-]{7,20}$/.test(input.phone.trim()))
-    errors.phone = "Please enter a valid phone number.";
   if (input.notes && input.notes.length > 2000)
     errors.notes = "Please keep notes under 2,000 characters.";
   return errors;

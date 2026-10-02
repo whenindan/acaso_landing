@@ -35,7 +35,7 @@ export function WhatsNext() {
             alt=""
             width={441}
             height={102}
-            className="invert-on-light block h-auto w-full [mask-image:linear-gradient(to_left,#000_0%,#000_30%,rgba(0,0,0,.22)_62%,rgba(0,0,0,.08)_100%)] [-webkit-mask-image:linear-gradient(to_left,#000_0%,#000_30%,rgba(0,0,0,.22)_62%,rgba(0,0,0,.08)_100%)]"
+            className="block h-auto w-full [mask-image:linear-gradient(to_left,#000_0%,#000_30%,rgba(0,0,0,.22)_62%,rgba(0,0,0,.08)_100%)] [-webkit-mask-image:linear-gradient(to_left,#000_0%,#000_30%,rgba(0,0,0,.22)_62%,rgba(0,0,0,.08)_100%)]"
           />
         </div>
       </Container>

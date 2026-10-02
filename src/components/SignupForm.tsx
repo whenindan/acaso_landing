@@ -7,12 +7,13 @@ import { Container, Eyebrow } from "./Section";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
-const EMPTY: SignupInput = { name: "", company: "", email: "", phone: "", notes: "" };
+const EMPTY: SignupInput = { name: "", company: "", email: "", notes: "" };
 
 export function SignupForm() {
   const [values, setValues] = useState<SignupInput>(EMPTY);
   const [errors, setErrors] = useState<SignupErrors>({});
   const [status, setStatus] = useState<Status>("idle");
+  const [honeypot, setHoneypot] = useState("");
 
   function update(field: keyof SignupInput, value: string) {
     setValues((v) => ({ ...v, [field]: value }));
@@ -34,7 +35,7 @@ export function SignupForm() {
       const res = await fetch("/api/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        body: JSON.stringify({ ...values, website: honeypot }),
       });
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.ok) {
@@ -89,7 +90,18 @@ export function SignupForm() {
             <Field id="name" label={signup.fields.name} required autoComplete="name" value={values.name} error={errors.name} onChange={update} />
             <Field id="company" label={signup.fields.company} required autoComplete="organization" value={values.company} error={errors.company} onChange={update} />
             <Field id="email" type="email" label={signup.fields.email} required autoComplete="email" value={values.email} error={errors.email} onChange={update} />
-            <Field id="phone" type="tel" label={signup.fields.phone} autoComplete="tel" value={values.phone} error={errors.phone} onChange={update} />
+
+            {/* Honeypot: hidden from people and screen readers; bots fill it. */}
+            <input
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              className="absolute -left-[9999px] size-px opacity-0"
+            />
 
             <label className="col-span-full flex flex-col gap-1.5">
               <span className="label-mono text-faint">
@@ -110,7 +122,7 @@ export function SignupForm() {
               <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="flex items-center gap-3.5 bg-fg px-[26px] py-4 text-[15px] font-medium text-bg transition-colors hover:bg-white disabled:cursor-wait disabled:opacity-60"
+                className="flex items-center gap-3.5 bg-fg px-[26px] py-4 text-[15px] font-medium text-bg transition-colors hover:bg-fg/85 disabled:cursor-wait disabled:opacity-60"
               >
                 {status === "submitting" ? signup.submitting : signup.submit} <span aria-hidden="true">→</span>
               </button>

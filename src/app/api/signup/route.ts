@@ -2,7 +2,7 @@ import { Resend } from "resend";
 import { validateSignup, type SignupInput } from "@/lib/signup";
 
 export async function POST(request: Request) {
-  let body: Partial<SignupInput>;
+  let body: Partial<SignupInput> & { website?: unknown };
   try {
     body = await request.json();
   } catch {
@@ -11,9 +11,12 @@ export async function POST(request: Request) {
   if (typeof body !== "object" || body === null) {
     return Response.json({ ok: false, error: "Invalid body" }, { status: 400 });
   }
+  // Honeypot: the "website" field is hidden from people, so only bots fill
+  // it. Pretend it worked so they don't retry.
+  if (body.website) return Response.json({ ok: true });
 
   const lead: Partial<SignupInput> = {};
-  for (const key of ["name", "company", "email", "phone", "notes"] as const) {
+  for (const key of ["name", "company", "email", "notes"] as const) {
     const value = body[key];
     if (typeof value === "string") lead[key] = value.trim();
   }
@@ -41,7 +44,6 @@ export async function POST(request: Request) {
       `Name: ${lead.name}`,
       `Company: ${lead.company}`,
       `Email: ${lead.email}`,
-      `Phone: ${lead.phone || "-"}`,
       "",
       "Notes:",
       lead.notes || "-",

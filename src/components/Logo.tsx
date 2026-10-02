@@ -11,7 +11,7 @@ export function Logo({ className = "h-4" }: { className?: string }) {
       width={2637}
       height={279}
       priority
-      className={`invert-on-light w-auto ${className}`}
+      className={`w-auto ${className}`}
     />
   );
 }
